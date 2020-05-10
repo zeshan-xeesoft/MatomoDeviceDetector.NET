@@ -1,0 +1,2252 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MatomoDeviceDetector.NET</name>
+    </assembly>
+    <members>
+        <member name="T:MatomoDeviceDetectorNET.DeviceDetector">
+            <summary>
+            DeviceDetector.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.VERSION">
+            <summary>
+            Current version number of DeviceDetector.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.desktopOsArray">
+            <summary>
+            Operating system families that are known as desktop only.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.UNKNOWN">
+            <summary>
+            Constant used as value for unknown browser / os.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.userAgent">
+            <summary>
+            Holds the useragent that should be parsed.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.os">
+            <summary>
+            Holds the operating system data after parsing the UA.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.client">
+            <summary>
+            Holds the client data after parsing the UA.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.device">
+            <summary>
+            Holds the device type after parsing the UA.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.brand">
+            <summary>
+            Holds the device brand data after parsing the UA.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.model">
+            <summary>
+            Holds the device model data after parsing the UA.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.bot">
+             <summary>
+             Holds bot information if parsing the UA results in a bot
+             (All other information attributes will stay empty in that case)
+            
+             If $discardBotInformation is set to true, this property will be set to
+             true if parsed UA is identified as bot, additional information will be not available
+            
+             If $skipBotDetection is set to true, bot detection will not be performed and isBot will
+             always be false.
+             </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.DeviceDetector.cache">
+            <summary>
+            Holds the cache class used for caching the parsed yml-Files.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.DeviceDetector"/> class.
+            </summary>
+            <param name="userAgent">UA.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.Is(MatomoDeviceDetectorNET.Services.Parser.Client.ClientType)">
+            <summary>
+            Client Type.
+            </summary>
+            <param name="type">Type.</param>
+            <returns>Bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.SetUserAgent(System.String)">
+            <summary>
+            Sets the useragent to be parsed.
+            </summary>
+            <param name="userAgent">UA.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.AddStandardClientsParser">
+            <summary>
+            Add Standard Clients Parser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.AddClientParser(MatomoDeviceDetectorNET.Services.Parser.Client.IClientParserAbstract)">
+            <summary>
+            AddClientParser.
+            </summary>
+            <param name="parser">Parser.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetClientsParsers">
+            <summary>
+            GetClientsParsers.
+            </summary>
+            <returns>List.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.AddStandardDevicesParser">
+            <summary>
+            Add Standard Devices Parser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.AddDeviceParser(MatomoDeviceDetectorNET.Services.Parser.Device.IDeviceParserAbstract)">
+            <summary>
+            AddDeviceParser.
+            </summary>
+            <param name="parser">Parser.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetDeviceParsers">
+            <summary>
+            GetDeviceParsers.
+            </summary>
+            <returns>List.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.DiscardBotInformation(System.Boolean)">
+            <summary>
+            Sets whether to discard additional bot information
+            If information is discarded it's only possible check whether UA was detected as bot or not.
+            (Discarding information speeds up the detection a bit).
+            </summary>
+            <param name="discard">Discard.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.SkipBotDetection(System.Boolean)">
+            <summary>
+            Sets whether to skip bot detection.
+            It is needed if we want bots to be processed as a simple clients. So we can detect if it is mobile client,
+            or desktop, or enything else. By default all this information is not retrieved for the bots.
+            </summary>
+            <param name="skip">Skip.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.IsBot">
+            <summary>
+            Returns if the parsed UA was identified as a Bot
+            @see bots.yml for a list of detected bots.
+            </summary>
+            <returns>Bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.IsTouchEnabled">
+            <summary>
+            Returns if the parsed UA was identified as a touch enabled device
+            Note: That only applies to windows 8 tablets.
+            </summary>
+            <returns>Is Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.HasAndroidTableFragment">
+            <summary>
+            Returns if the parsed UA contains the 'Android; Tablet;' fragment.
+            </summary>
+            <returns>Regex.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.HasAndroidMobileFragment">
+            <summary>
+            Returns if the parsed UA contains the 'Android; Mobile;' fragment.
+            </summary>
+            <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.IsTablet">
+            <summary>
+            Is Tablet.
+            </summary>
+            <returns>Bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.IsMobile">
+            <summary>
+            Is Mobile.
+            </summary>
+            <returns>Bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.IsDesktop">
+            <summary>
+            Returns if the parsed UA was identified as desktop device
+            Desktop devices are all devices with an unknown type that are running a desktop os.
+            </summary>
+            <returns>Bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetOs">
+            <summary>
+            Returns the operating system data extracted from the parsed UA
+            If $attr is given only that property will be returned.
+            </summary>
+            <returns>OS.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetClient">
+            <summary>
+            Get Client.
+            </summary>
+            <returns>Client.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetBrowserClient">
+            <summary>
+            Get browser client.
+            </summary>
+            <returns>Browser.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetDeviceName">
+            <summary>
+            Returns the device type extracted from the parsed UA
+             <see cref="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.DeviceTypes"/> for available device types.
+            </summary>
+            <returns>Device.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetBrand">
+            <summary>
+            Get Brand.
+            </summary>
+            <returns>Brand.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetBrandName">
+            <summary>
+            Returns the full device brand name extracted from the parsed UA
+            @see self::$deviceBrand for available device brands.
+            </summary>
+            <returns>Returns BrandName.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetModel">
+            <summary>
+            Get the Model.
+            </summary>
+            <returns>Model.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetBot">
+            <summary>
+            Returns the bot extracted from the parsed UA.
+            </summary>
+            <returns>Bot.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.IsParsed">
+            <summary>
+            Returns true, if userAgent was already parsed with <see cref="M:MatomoDeviceDetectorNET.DeviceDetector.Parse"/>.
+            </summary>
+            <returns>Parsed.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.Parse">
+            <summary>
+            Triggers the parsing of the current user agent.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.ParseBot">
+            <summary>
+            Parses the UA for bot information using the Bot parser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.ParseClient">
+            <summary>
+            Parse Client.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.ParseDevice">
+            <summary>
+            Parse Device.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetInfoFromUserAgent(System.String)">
+             <summary>
+             Parses a useragent and returns the detected data
+            
+             ATTENTION: Use that method only for testing or very small applications
+             To get fast results from DeviceDetector you need to make your own implementation,
+             that should use one of the caching mechanisms. See README.md for more information.
+            
+             </summary>
+             <param name="ua">UserAgent to parse.</param>
+             <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.SetCache(MatomoDeviceDetectorNET.Services.Cache.ICache)">
+            <summary>
+            Sets the Cache.
+            </summary>
+            <param name="cache">Cache.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetCache">
+            <summary>
+            Get Cache.
+            </summary>
+            <returns>Cache.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.SetRegexEngine(MatomoDeviceDetectorNET.Services.RegexEngine.IRegexEngine)">
+            <summary>
+            Set Regex Engine.
+            </summary>
+            <param name="regexEng">Regex.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.GetRegexEngine">
+            <summary>
+            Get Regex Engine.
+            </summary>
+            <returns>Engine.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.IsMatchUserAgent(System.String)">
+            <summary>
+            Is Match UA.
+            </summary>
+            <param name="regex">Regex.</param>
+            <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.MatchUserAgent(System.String)">
+            <summary>
+            Match UA.
+            </summary>
+            <param name="regex">Regex.</param>
+            <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.FixUserAgentRegEx(System.String)">
+            <summary>
+            Fix UA.
+            </summary>
+            <param name="regex">Regex.</param>
+            <returns>Fixed UA.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.DeviceDetector.SetVersionTruncation(System.Int32)">
+            <summary>
+            Set Version Truncation.
+            </summary>
+            <param name="versionTruncation">Truncation.</param>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Bot">
+            <summary>
+            The Bot Parser Library.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Bot.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Bot.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Bot.Category">
+            <summary>
+            Gets or sets the Category.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Bot.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Bot.Producer">
+            <summary>
+            Gets or sets the Producer.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Cache.Cache">
+            <summary>
+            Dictionary Class Cache.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.Cache.Contains(System.String)">
+            <summary>
+            Contains.
+            </summary>
+            <param name="id">Id.</param>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.Cache.Delete(System.String)">
+            <summary>
+            Delete.
+            </summary>
+            <param name="id">Id.</param>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.Cache.Fetch(System.String)">
+            <summary>
+            Fetch.
+            </summary>
+            <param name="id">Id.</param>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.Cache.FlushAll">
+            <summary>
+            Flush all.
+            </summary>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.Cache.Save(System.String,System.Object,System.Int32)">
+            <summary>
+            Save.
+            </summary>
+            <param name="id">Id.</param>
+            <param name="data">Data.</param>
+            <param name="lifeTime">Lifetime.</param>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Cache.ICache">
+            <summary>
+            Interface ICache.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.ICache.Fetch(System.String)">
+            <summary>
+            Gets the Fetch.
+            </summary>
+            <param name="id">Id.</param>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.ICache.Contains(System.String)">
+            <summary>
+            Gets the Contains.
+            </summary>
+            <param name="id">Id.</param>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.ICache.Save(System.String,System.Object,System.Int32)">
+            <summary>
+            Gets the Save state.
+            </summary>
+            <param name="id">Id.</param>
+            <param name="data">Data.</param>
+            <param name="lifeTime">Lifetime.</param>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.ICache.Delete(System.String)">
+            <summary>
+            Gets the delete.
+            </summary>
+            <param name="id">Id.</param>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Cache.ICache.FlushAll">
+            <summary>
+            Gets the Flush All.
+            </summary>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Client.Browser">
+            <summary>
+            The Browser Class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Browser.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Browser.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Browser.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Browser.Engine">
+            <summary>
+            Gets or sets the Engine.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Client.BrowserEngine">
+            <summary>
+            The Browser Engine Class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.BrowserEngine.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.BrowserEngine.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.BrowserEngine.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Client.Engine">
+            <summary>
+            The Engine class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Engine.Default">
+            <summary>
+            Gets or sets the Default.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Engine.Versions">
+            <summary>
+            Gets or sets the Versions.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Client.FeedReader">
+            <summary>
+            The Feed Reader Class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.FeedReader.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.FeedReader.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.FeedReader.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.FeedReader.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.FeedReader.Type">
+            <summary>
+            Gets or sets the Type.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Client.IClientParseLibrary">
+            <summary>
+            IClient Parse Library.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.IClientParseLibrary.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Client.Library">
+            <summary>
+            Gets or sets the Library.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Library.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Library.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Library.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Library.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Client.MediaPlayer">
+            <summary>
+            The Media Player Class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.MediaPlayer.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.MediaPlayer.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.MediaPlayer.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Client.MobileApp">
+            <summary>
+            Mobile App Class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.MobileApp.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.MobileApp.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.MobileApp.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Client.Pim">
+            <summary>
+            The PIM Parser.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Pim.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Pim.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Client.Pim.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Device.DeviceModel">
+            <summary>
+            Device Model.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Device.DeviceModel.Models">
+            <summary>
+            Gets or sets the Models.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Device.IDeviceParseLibrary">
+            <summary>
+            The IDevice Parse Library.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Device.IDeviceParseLibrary.Device">
+            <summary>
+            Gets or sets the Device.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Device.Model">
+            <summary>
+            The Model Class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Device.Model.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Device.Model.Name">
+            <summary>
+            Gets or sets the Model.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Device.Model.Device">
+            <summary>
+            Gets or sets the Device.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Device.Model.Brand">
+            <summary>
+            Gets or sets the Brand.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.IEnumerableExtensions">
+            <summary>
+            IEnumerableExtensions.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.IEnumerableExtensions.Any(System.Collections.IEnumerable)">
+            <summary>
+            Any?.
+            </summary>
+            <param name="source">Source.</param>
+            <returns>Bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.IEnumerableExtensions.Count(System.Collections.IEnumerable)">
+            <summary>
+            Count.
+            </summary>
+            <param name="source">Source.</param>
+            <returns>Int.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.IParseLibrary">
+            <summary>
+            IParser Library.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.IParseLibrary.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.IParseLibrary.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Os">
+            <summary>
+            The OS Class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Os.Regex">
+            <summary>
+            Gets or sets the Regex.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Os.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Os.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.BotParser">
+            <summary>
+            Class BotParserAbstract
+            Abstract class for all bot parsers.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.BotParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.BotParser"/> class.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.BotParserAbstract`2">
+            <summary>
+            BotParserAbstract.
+            </summary>
+            <typeparam name="T">T.</typeparam>
+            <typeparam name="TResult">TResult.</typeparam>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.BotParserAbstract`2.DiscardDetails">
+            <summary>
+            Gets or sets a value indicating whether discarding.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.BotParserAbstract`2.Parse">
+             <summary>
+             Parses the current UA and checks whether it contains bot information
+            
+             @see bots.yml for list of detected bots
+            
+             Step 1: Build a big regex containing all regexes and match UA against it
+             -> If no matches found: return
+             -> Otherwise:
+             Step 2: Walk through the list of regexes in bots.yml and try to match every one
+             -> Return the matched data
+            
+             If $discardDetails is set to TRUE, the Step 2 will be skipped
+             $bot will be set to TRUE instead
+            
+             NOTE: Doing the big match before matching every single regex speeds up the detection.
+             </summary>
+             <returns>TResult.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser">
+            <summary>
+            Browser Parser.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.availableBrowsers">
+            <summary>
+            Known browsers mapped to their internal short codes.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.browserFamilies">
+            <summary>
+            Browser families mapped to the short codes of the associated browsers.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.mobileOnlyBrowsers">
+            <summary>
+            Browsers that are available for mobile devices only.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.GetAvailableBrowsers">
+            <summary>
+            Returns list of all available browsers.
+            </summary>
+            <returns>Returns dictionary.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.GetAvailableBrowserFamilies">
+            <summary>
+            Returns list of all available browser families.
+            </summary>
+            <returns>Returns Browser Families.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.GetBrowserFamily(System.String,System.String@)">
+            <summary>
+            Get the Browser Family.
+            </summary>
+            <param name="browserLabel">Label.</param>
+            <param name="name">Name.</param>
+            <returns>Return bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.IsMobileOnlyBrowser(System.String)">
+            <summary>
+             Returns if the given browser is mobile only.
+            </summary>
+            <param name="browser">Label or name of browser.</param>
+            <returns>Returns bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.Parse">
+            <summary>
+            Public Parse.
+            </summary>
+            <returns>Returns Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.BuildEngine(MatomoDeviceDetectorNET.Services.Client.Engine,System.String)">
+            <summary>
+            Build Engine.
+            </summary>
+            <param name="engineData">Engine Data.</param>
+            <param name="browserVersion">Browser Version.</param>
+            <returns>Returns Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.BrowserParser.BuildEngineVersion(System.String)">
+            <summary>
+            Build Engine Version.
+            </summary>
+            <param name="engine">The Engine.</param>
+            <returns>Return Match.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.EngineParser">
+            <summary>
+            Engine Parser.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.EngineParser.availableEngines">
+            <summary>
+            Known browser engines mapped to their internal short codes.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.EngineParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.EngineParser"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.EngineParser.GetAvailableEngines">
+            <summary>
+            Returns list of all available browser engines.
+            </summary>
+            <returns>Returns AE.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.EngineParser.Parse">
+            <summary>
+            Returns list of all available browser engines.
+            </summary>
+            <returns>Returns UA.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.Engine.VersionParser">
+            <summary>
+            Version Parser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.Engine.VersionParser.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.Engine.VersionParser"/> class.
+            </summary>
+            <param name="ua">The User Agent.</param>
+            <param name="engine">The Engine.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.Browser.Engine.VersionParser.Parse">
+            <summary>
+            Gets the Parse.
+            </summary>
+            <returns>Returns Match on Parse.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.ClientParserAbstract`2">
+            <summary>
+            Client Parser.
+            </summary>
+            <typeparam name="T">T.</typeparam>
+            <typeparam name="TResult">T Result.</typeparam>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.ClientParserAbstract`2.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.ClientParserAbstract`2"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.ClientParserAbstract`2.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.ClientParserAbstract`2"/> class.
+            </summary>
+            <param name="ua">The UA.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.ClientParserAbstract`2.Parse">
+            <summary>
+            Parse.
+            </summary>
+            <returns>Returns Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.ClientParserAbstract`2.GetAvailableClients">
+            <summary>
+            Get Available Clients.
+            </summary>
+            <returns>Returns List of Clients.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType">
+            <summary>
+            Client Type.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.#ctor(MatomoDeviceDetectorNET.Services.Parser.Client.IClientParserAbstract)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType"/> class.
+            </summary>
+            <param name="client">Client.</param>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.Browser">
+            <summary>
+            Gets the Browser.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.FeedReader">
+            <summary>
+            Gets the FeedReader.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.Library">
+            <summary>
+            Gets the Library.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.MediaPlayer">
+            <summary>
+            Gets the Media Player.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.MobileApp">
+            <summary>
+            Gets the Mobile App.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.PIM">
+            <summary>
+            Gets the PIM.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.Client">
+            <summary>
+            Gets the Client.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.Name">
+            <summary>
+            Gets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.Client.ClientType.FixtureFile">
+            <summary>
+            Gets the Fixture File.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.FactoryClient`1">
+            <summary>
+            Factory Client.
+            </summary>
+            <typeparam name="T">T.</typeparam>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.FactoryClient`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.FactoryClient`1"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.FactoryClient`1.Create(System.String)">
+            <summary>
+            Create.
+            </summary>
+            <param name="name">Name.</param>
+            <returns>Returns constructor.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.FactoryClient`1.Register(System.String,System.Func{`0})">
+            <summary>
+            Register.
+            </summary>
+            <param name="name">Name.</param>
+            <param name="ctor">Ctor.</param>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.FeedReaderParser">
+            <summary>
+            FeedReaderParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.FeedReaderParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.FeedReaderParser"/> class.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.IClientParserAbstract">
+            <summary>
+            IClientParserAbstract.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.LibraryParser">
+            <summary>
+            Library Parser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.LibraryParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.LibraryParser"/> class.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.MediaPlayerParser">
+            <summary>
+            MediaPlayerParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.MediaPlayerParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.MediaPlayerParser"/> class.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.MobileAppParser">
+            <summary>
+            MobileAppParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.MobileAppParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.MobileAppParser"/> class.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Client.PimParser">
+            <summary>
+            PimParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Client.PimParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Client.PimParser"/> class.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.CameraParser">
+            <summary>
+            CameraParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.CameraParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Device.CameraParser"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.CameraParser.Parse">
+            <summary>
+            Parse.
+            </summary>
+            <returns>Returns Parse.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.CarBrowserParser">
+            <summary>
+            CarBrowserParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.CarBrowserParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Device.CarBrowserParser"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.CarBrowserParser.Parse">
+            <summary>
+            Parse.
+            </summary>
+            <returns>Returns Pre Match.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.ConsoleParser">
+            <summary>
+            ConsoleParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.ConsoleParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Device.ConsoleParser"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.ConsoleParser.Parse">
+            <summary>
+            Parse.
+            </summary>
+            <returns>Returns Pre Match.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2">
+            <summary>
+            Device Parser.
+            </summary>
+            <typeparam name="T">T.</typeparam>
+            <typeparam name="TResult">TResult.</typeparam>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.model">
+            <summary>
+            Gets the model.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.brand">
+            <summary>
+            Gets the brand.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.DeviceType">
+            <summary>
+            Gets the Device type.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.UnknownBrand">
+            <summary>
+            Gets the unkown brand.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.DeviceTypes">
+            <summary>
+            Detectable device types.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.DeviceBrands">
+            <summary>
+            Known device brands
+            Note: Before using a new brand in on of the regex files, it needs to be added here.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.GetDeviceType">
+            <summary>
+            Get device type.
+            </summary>
+            <returns>Returns Type.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.GetAvailableDeviceTypes">
+            <summary>
+            Returns available device types.
+            </summary>
+            <returns>Types.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.GetAvailableDeviceTypeNames">
+            <summary>
+            Returns names of all available device types.
+            </summary>
+            <returns>Devixe Types.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.GetDeviceName(System.Int32)">
+            <summary>
+            Gets Device Name.
+            </summary>
+            <param name="deviceType">Type.</param>
+            <returns>KV.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.GetModel">
+            <summary>
+            Returns the detected device model.
+            </summary>
+            <returns>Model.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.GetBrand">
+            <summary>
+            Returns the detected device brand.
+            </summary>
+            <returns>Brand.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.GetFullName(System.String)">
+            <summary>
+            GetFullName.
+            </summary>
+            <param name="brandId">Brand Id.</param>
+            <returns>Returns Full Name.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.SetUserAgent(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.Parse">
+            <summary>
+            Parse.
+            </summary>
+            <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.BuildModel(System.String,System.String[])">
+            <summary>
+            Build Model.
+            </summary>
+            <param name="model">Model.</param>
+            <param name="matches">Match.</param>
+            <returns>Return Model.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceParserAbstract`2.Reset">
+            <summary>
+            Reset model.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType">
+            <summary>
+            Device Type.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.DESKTOP">
+            <summary>
+            Desktop.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.SMARTPHONE">
+            <summary>
+            Smartphone.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.TABLET">
+            <summary>
+            Tablet.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.FEATUREPHONE">
+            <summary>
+            Feature phone.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.CONSOLE">
+            <summary>
+            Console.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.TV">
+            <summary>
+            TV.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.CARBROWSER">
+            <summary>
+            Car browser.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.SMARTDISPLAY">
+            <summary>
+            Smart display.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.CAMERA">
+            <summary>
+            Camera.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.PORTABLEMEDIAPLAYER">
+            <summary>
+            Media player.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.PHABLET">
+            <summary>
+            Phablet.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.SMARTSPEAKER">
+            <summary>
+            Smart speaker.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.WEARABLE">
+            <summary>
+            Wearable.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.HbbTvParser">
+            <summary>
+            HbbTvParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.HbbTvParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Device.HbbTvParser"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.HbbTvParser.Parse">
+            <summary>
+            Parse.
+            </summary>
+            <returns>Returns Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.HbbTvParser.IsHbbTv">
+            <summary>
+            Is HBB TV.
+            </summary>
+            <returns>Bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.HbbTvParser.HbbTv">
+            <summary>
+            HBB TV.
+            </summary>
+            <returns>Match.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.IDeviceParserAbstract">
+            <summary>
+            IDeviceParserAbstract.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.IDeviceParserAbstract.GetModel">
+            <summary>
+            Get the Model.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.IDeviceParserAbstract.GetBrand">
+            <summary>
+            Get the Brand.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.MobileParser">
+            <summary>
+            MobileParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.MobileParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Device.MobileParser"/> class.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.PortableMediaPlayerParser">
+            <summary>
+            Portable Media Player Parser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.PortableMediaPlayerParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Device.PortableMediaPlayerParser"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.PortableMediaPlayerParser.Parse">
+            <summary>
+            Parse.
+            </summary>
+            <returns>Match.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.IBotParserAbstract">
+            <summary>
+            IBotParserAbstract.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.IBotParserAbstract.DiscardDetails">
+            <summary>
+            Gets or sets a value indicating whether gets or sets the DiscardDetails.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.IParserAbstract">
+            <summary>
+            IParserAbstract.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.IParserAbstract.FixtureFile">
+            <summary>
+            Gets the Fixture File.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.IParserAbstract.ParserName">
+            <summary>
+            Gets the ParserName.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.IParserAbstract.SetUserAgent(System.String)">
+            <summary>
+            SetUserAgent.
+            </summary>
+            <param name="ua">UA.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.IParserAbstract.SetCache(MatomoDeviceDetectorNET.Services.Cache.ICache)">
+            <summary>
+            Cache Provider.
+            </summary>
+            <param name="cacheProvider">Cache.</param>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser">
+            <summary>
+            Operating System Parser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser"/> class.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.operatingSystems">
+            <summary>
+            Known operating systems mapped to their internal short codes.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.osFamilies">
+            <summary>
+            Operating system families mapped to the short codes of the associated operating systems.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.GetAvailableOperatingSystems">
+            <summary>
+            Returns all available operating systems.
+            </summary>
+            <returns>OS.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.GetAvailableOperatingSystemFamilies">
+            <summary>
+            Returns all available operating system families.
+            </summary>
+            <returns>OSF.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.Parse">
+            <summary>
+            Parse result.
+            </summary>
+            <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.ParsePlatform">
+            <summary>
+            ParsePlatform.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.GetOsFamily(System.String,System.String@)">
+            <summary>
+            Returns the operating system family for the given operating system.
+            </summary>
+            <param name="osLabel">Label.</param>
+            <param name="name">Name.</param>
+            <returns>bool|string If false, <see cref="F:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.Unknown"/>String.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.OperatingSystemParser.GetNameFromId(System.String,System.String)">
+            <summary>
+            Returns the full name for the given short name.
+            </summary>
+            <param name="os">OS.</param>
+            <param name="ver">Version.</param>
+            <returns>String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2">
+            <summary>
+            ParserAbstract.
+            </summary>
+            <typeparam name="T">T.</typeparam>
+            <typeparam name="TResult">TResult.</typeparam>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.FixtureFile">
+            <summary>
+            Gets or sets holds the path to the yml file containing regexes.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.ParserName">
+            <summary>
+            Gets or sets holds the internal name of the parser
+            Used for caching.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.UserAgent">
+            <summary>
+            Gets holds the user agent the should be parsed.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.RegexList">
+            <summary>
+            Holds an array with regexes to parse, if already loaded.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.maxMinorParts">
+            <summary>
+            Indicates how deep versioning will be detected
+            if $maxMinorParts is 0 only the major version will be returned.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.VERSIONTRUNCATIONMAJOR">
+            <summary>
+            Versioning constant used to set max versioning to major version only
+            Version examples are: 3, 5, 6, 200, 123, ...
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.VERSIONTRUNCATIONMINOR">
+            <summary>
+            Versioning constant used to set max versioning to minor version
+            Version examples are: 3.4, 5.6, 6.234, 0.200, 1.23, ...
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.VERSIONTRUNCATIONPATCH">
+            <summary>
+            Versioning constant used to set max versioning to path level
+            Version examples are: 3.4.0, 5.6.344, 6.234.2, 0.200.3, 1.2.3, ...
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.VERSIONTRUNCATIONBUILD">
+            <summary>
+            Versioning constant used to set versioning to build number
+            Version examples are: 3.4.0.12, 5.6.334.0, 6.234.2.3, 0.200.3.1, 1.2.3.0, ...
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.VERSIONTRUNCATIONNONE">
+            <summary>
+            Versioning constant used to set versioning to unlimited (no truncation).
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.cache">
+            <summary>
+            Gets the Cache.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.yamlParser">
+            <summary>
+            Gets the Parser.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.regexEngine">
+            <summary>
+            Gets the Regex.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.Parse">
+            <summary>
+            Parse.
+            </summary>
+            <returns>Ex.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2"/> class.
+            </summary>
+            <param name="ua">UA.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.SetVersionTruncation(System.Int32)">
+            <summary>
+            Set how DeviceDetector should return versions.
+            </summary>
+            <param name="type">Any of the VERSION_TRUNCATION_* constants.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.SetUserAgent(System.String)">
+            <summary>
+            Sets the user agent to parse.
+            </summary>
+            <param name="ua">UA.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.GetName">
+            <summary>
+            Returns the internal name of the parser.
+            </summary>
+            <returns>Parser Name.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.GetRegexes">
+            <summary>
+            Returns the result of the parsed yml file defined in $fixtureFile.
+            </summary>
+            <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.GetRegexesDirectory">
+            <summary>
+            Get Regexes Directory.
+            </summary>
+            <returns>Dir.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.IsMatchUserAgent(System.String)">
+            <summary>
+            Matches the useragent against the given regex.
+            </summary>
+            <param name="regex">Regex.</param>
+            <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.MatchUserAgent(System.String)">
+            <summary>
+            MatchUserAgent.
+            </summary>
+            <param name="regex">Regex.</param>
+            <returns>Array.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.FixUserAgentRegEx(System.String)">
+            <summary>
+            Fix User Agent Reg Ex.
+            </summary>
+            <param name="regex">Regex.</param>
+            <returns>Fixed.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.BuildByMatch(System.String,System.String[])">
+            <summary>
+            Build By Match.
+            </summary>
+            <param name="item">Item.</param>
+            <param name="matches">Matches.</param>
+            <returns>String.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.BuildVersion(System.String,System.String[])">
+            <summary>
+            Builds the version with the given $versionString and $matches
+            Example:
+            $versionString = 'v$2'
+            $matches = array('version_1_0_1', '1_0_1')
+            return value would be v1.0.1.
+            </summary>
+            <param name="versionString">Version.</param>
+            <param name="matches">Matches.</param>
+            <returns>String.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.PreMatchOverall">
+             <summary>
+             Tests the useragent against a combination of all regexes
+            
+             All regexes returned by getRegexes() will be reversed and concated with '|'
+             Afterwards the big regex will be tested against the user agent
+            
+             Method can be used to speed up detections by making a big check before doing checks for every single regex.
+             </summary>
+             <returns>Bool.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.SetCache(MatomoDeviceDetectorNET.Services.Cache.ICache)">
+            <summary>
+            Sets the Cache class.
+            </summary>
+            <param name="cacheProvider">CP.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.GetCache">
+            <summary>
+            Returns Cache object.
+            </summary>
+            <returns>Cache.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.SetYamlParser(MatomoDeviceDetectorNET.Services.Yaml.IParser{`0})">
+            <summary>
+            SetYamlParser.
+            </summary>
+            <param name="yaml">Yaml.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.GetYamlParser">
+            <summary>
+            Get Yaml Parser.
+            </summary>
+            <returns>Yaml.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.SetRegexEngine(MatomoDeviceDetectorNET.Services.RegexEngine.IRegexEngine)">
+            <summary>
+            SetRegexEngine.
+            </summary>
+            <param name="regexEngine">Regex.</param>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.ParserAbstract`2.GetRegexEngine">
+            <summary>
+            GetRegexEngine.
+            </summary>
+            <returns>Regex.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.PlatformType">
+            <summary>
+            PlatformType.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.PlatformType.ARM">
+            <summary>
+            Arm.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.PlatformType.X64">
+            <summary>
+            X64.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.PlatformType.X86">
+            <summary>
+            X86.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.PlatformType.NONE">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.VendorFragmentParser">
+            <summary>
+            VendorFragmentParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.VendorFragmentParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.VendorFragmentParser"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.VendorFragmentParser.Parse">
+            <summary>
+            ParseResult.
+            </summary>
+            <returns>Result.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.VersionTruncation">
+            <summary>
+            VersionTruncation.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.VersionTruncation.Major">
+            <summary>
+            Version constant used to set max version to major version only
+            Version examples are: 3, 5, 6, 200, 123, ...
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.VersionTruncation.Minor">
+            <summary>
+            Version constant used to set max version to minor version
+            Version examples are: 3.4, 5.6, 6.234, 0.200, 1.23, ...
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.VersionTruncation.Patch">
+            <summary>
+            Version constant used to set max version to path level
+            Version examples are: 3.4.0, 5.6.344, 6.234.2, 0.200.3, 1.2.3.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.VersionTruncation.Build">
+            <summary>
+            Version constant used to set version to build number
+            Version examples are: 3.4.0.12, 5.6.334.0, 6.234.2.3, 0.200.3.1, 1.2.3.0.
+            </summary>
+        </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.VersionTruncation.None">
+            <summary>
+            Version constant used to set version to unlimited (no truncation).
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Producer">
+            <summary>
+            The Producer class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Producer.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Producer.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.RegexEngine.IRegexEngine">
+            <summary>
+            IRegexEngine.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.RegexEngine.IRegexEngine.Match(System.String,System.String)">
+            <summary>
+            Gets the Match.
+            </summary>
+            <param name="input">Input.</param>
+            <param name="pattern">Pattern.</param>
+            <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.RegexEngine.IRegexEngine.Matches(System.String,System.String)">
+            <summary>
+            List of matches.
+            </summary>
+            <param name="input">Input.</param>
+            <param name="pattern">Pattern.</param>
+            <returns>List.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.RegexEngine.IRegexEngine.MatchesUnique(System.String,System.String)">
+            <summary>
+            Matches Unique.
+            </summary>
+            <param name="input">Input.</param>
+            <param name="pattern">Pattern.</param>
+            <returns>List of Unique.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.RegexEngine.IRegexEngine.Replace(System.String,System.String,System.String)">
+            <summary>
+            Replace.
+            </summary>
+            <param name="input">Input.</param>
+            <param name="pattern">Pattern.</param>
+            <param name="replacement">Replacement.</param>
+            <returns>String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.RegexEngine.MsRegexEngine">
+            <summary>
+            Microsoft Regex Engine for MatomoDeviceDetector.Net.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.RegexEngine.MsRegexEngine.Match(System.String,System.String)">
+            <summary>
+            Match.
+            </summary>
+            <param name="input">Input.</param>
+            <param name="pattern">Pattern.</param>
+            <returns>Success.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.RegexEngine.MsRegexEngine.Matches(System.String,System.String)">
+            <summary>
+            Matches.
+            </summary>
+            <param name="input">Input.</param>
+            <param name="pattern">Pattern.</param>
+            <returns>List.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.RegexEngine.MsRegexEngine.MatchesUnique(System.String,System.String)">
+            <summary>
+            Match Unique.
+            </summary>
+            <param name="input">Input.</param>
+            <param name="pattern">Pattern.</param>
+            <returns>Match.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.RegexEngine.MsRegexEngine.Replace(System.String,System.String,System.String)">
+            <summary>
+            String replace.
+            </summary>
+            <param name="input">Input.</param>
+            <param name="pattern">Pattern.</param>
+            <param name="replacement">Replacement.</param>
+            <returns>Regex.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.BotMatchResult">
+            <summary>
+            Bot Match Result.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.BotMatchResult.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.BotMatchResult.Category">
+            <summary>
+            Gets or sets the Category.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.BotMatchResult.Url">
+            <summary>
+            Gets or sets the Url.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.BotMatchResult.Producer">
+            <summary>
+            Gets or sets the Producer.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.BotMatchResult.ToString">
+            <summary>
+            Override Type.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.Client.BrowserMatchResult">
+            <summary>
+            BrowserMatchResult.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.BrowserMatchResult.ShortName">
+            <summary>
+            Gets or sets the ShortName.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.BrowserMatchResult.Engine">
+            <summary>
+            Gets or sets the Engine.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.BrowserMatchResult.EngineVersion">
+            <summary>
+            Gets or sets the Engine Version.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.Client.BrowserMatchResult.ToString">
+            <summary>
+            Override to String.
+            </summary>
+            <returns>Returns string.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.Client.ClientMatchResult">
+            <summary>
+            Client Match Result.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.ClientMatchResult.Type">
+            <summary>
+            Gets or sets the Type.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.ClientMatchResult.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.ClientMatchResult.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.Client.ClientMatchResult.ToString">
+            <summary>
+            Ovrride String.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.Client.IClientMatchResult">
+            <summary>
+            IClientMatchResult.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.IClientMatchResult.Type">
+            <summary>
+            Gets or sets the Type.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.IClientMatchResult.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.Client.UnknownClientMatchResult">
+            <summary>
+            Unknown Client Match Result.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.UnknownClientMatchResult.Type">
+            <summary>
+            Gets the type.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Client.UnknownClientMatchResult.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult">
+            <summary>
+            Device Detector Result.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult"/> class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.UserAgent">
+            <summary>
+            Gets or sets the User Agent.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.Bot">
+            <summary>
+            Gets or sets the Bot.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.Os">
+            <summary>
+            Gets or sets the OS.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.Client">
+            <summary>
+            Gets or sets the Client.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.DeviceType">
+            <summary>
+            Gets or sets the DeviceType.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.DeviceBrand">
+            <summary>
+            Gets or sets the DeviceBrand.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.DeviceModel">
+            <summary>
+            Gets or sets the DeviceModel.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.OsFamily">
+            <summary>
+            Gets or sets the OsFamily.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.BrowserFamily">
+            <summary>
+            Gets or sets the BrowserFamily.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.DeviceDetectorResult.ToString">
+            <summary>
+            Override String.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.Device.DeviceMatchResult">
+            <summary>
+            Device Match Result.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Device.DeviceMatchResult.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Device.DeviceMatchResult.Brand">
+            <summary>
+            Gets or sets the Brand.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Device.DeviceMatchResult.Type">
+            <summary>
+            Gets or sets the Type.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.Device.DeviceMatchResult.ToString">
+            <summary>
+            Override String.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.Device.IDeviceMatchResult">
+            <summary>
+            IDeviceMatchResult.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Device.IDeviceMatchResult.Brand">
+            <summary>
+            Gets or sets the Brand.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.Device.IDeviceMatchResult.Type">
+            <summary>
+            Gets or sets the Type.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.IBotMatchResult">
+            <summary>
+            IBotMatchResult.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.IBotMatchResult.Category">
+            <summary>
+            Gets or sets the Category.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.IBotMatchResult.Url">
+            <summary>
+            Gets or sets the Url.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.IBotMatchResult.Producer">
+            <summary>
+            Gets or sets the Producer.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.IMatchResult">
+            <summary>
+            IMatchResult.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.IMatchResult.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.OsMatchResult">
+            <summary>
+            Os Match Result.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.OsMatchResult.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.OsMatchResult.ShortName">
+            <summary>
+            Gets or sets the Short Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.OsMatchResult.Version">
+            <summary>
+            Gets or sets the Version.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.OsMatchResult.Platform">
+            <summary>
+            Gets or sets the Platform.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.OsMatchResult.ToString">
+            <summary>
+            Override String.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.ParseResult`1">
+            <summary>
+            ParseResult.
+            </summary>
+            <typeparam name="TMatch">TMatch.</typeparam>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.ParseResult`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Results.ParseResult`1"/> class.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.ParseResult`1.#ctor(`0,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Results.ParseResult`1"/> class.
+            </summary>
+            <param name="match">Match.</param>
+            <param name="success">Sucess.</param>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.ParseResult`1.Success">
+            <summary>
+            Gets a value indicating whether gets or sets the Success.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.ParseResult`1.Match">
+            <summary>
+            Gets the Match.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.ParseResult`1.Matches">
+            <summary>
+            Gets or sets the Matches.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.ParseResult`1.Add(`0)">
+            <summary>
+            ParseResult.
+            </summary>
+            <param name="match">Match.</param>
+            <returns>This.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.ParseResult`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Add Range.
+            </summary>
+            <param name="matches">Matches.</param>
+            <returns>This.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.ParseResult`1.ToString">
+            <summary>
+            Override String.
+            </summary>
+            <returns>Return String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.UnknownOsMatchResult">
+            <summary>
+            UnknownOsMatchResult.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.UnknownOsMatchResult.Name">
+            <summary>
+            Gets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.UnknownOsMatchResult.ShortName">
+            <summary>
+            Gets the ShortName.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Results.VendorFragmentResult">
+            <summary>
+            Vendor Fragment Result.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.VendorFragmentResult.Name">
+            <summary>
+            Gets or sets the Name.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.VendorFragmentResult.Brand">
+            <summary>
+            Gets or sets the Brand.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Results.VendorFragmentResult.Type">
+            <summary>
+            Gets or sets the Type.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Results.VendorFragmentResult.ToString">
+            <summary>
+            Override String.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Settings">
+            <summary>
+            Global DeviceDetector settings.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Settings.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:MatomoDeviceDetectorNET.Services.Settings"/> class.
+            </summary>
+        </member>
+        <member name="P:MatomoDeviceDetectorNET.Services.Settings.RegexesDirectory">
+            <summary>
+            Gets or sets the Regex Dir.
+            </summary>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Yaml.IParser`1">
+            <summary>
+            IParser.
+            </summary>
+            <typeparam name="T">T.</typeparam>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Yaml.IParser`1.ParseFile(System.String)">
+            <summary>
+            Parse File.
+            </summary>
+            <param name="file">File.</param>
+            <returns>Parse.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Yaml.IParser`1.ParseStream(System.IO.Stream)">
+            <summary>
+            Parse Stream.
+            </summary>
+            <param name="stream">Stream.</param>
+            <returns>Parsed.</returns>
+        </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Yaml.YamlParser`1">
+            <summary>
+            YamlParser.
+            </summary>
+            <typeparam name="T">T.</typeparam>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Yaml.YamlParser`1.ParseFile(System.String)">
+            <summary>
+            Parse File.
+            </summary>
+            <param name="file">File.</param>
+            <returns>Parsed.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Yaml.YamlParser`1.ParseStream(System.IO.Stream)">
+            <summary>
+            ParseStream.
+            </summary>
+            <param name="stream">Stram.</param>
+            <returns>Parsed.</returns>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Yaml.YamlParser`1.ParseStreamReader(System.IO.StreamReader)">
+            <summary>
+            Parse Stream Reader.
+            </summary>
+            <param name="streamReader">Stream reader.</param>
+            <returns>Deserialized.</returns>
+        </member>
+    </members>
+</doc>
