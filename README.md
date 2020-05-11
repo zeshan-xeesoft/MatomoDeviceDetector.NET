@@ -57,7 +57,7 @@ var result = botParser.Parse();
 
 ## What Device Detector is able to detect
 
-The lists below are auto generated and updated from time to time. Some of them might not be complete.
+The lists below are auto generated.
 
 *Last update: 2020/05/11*
 
