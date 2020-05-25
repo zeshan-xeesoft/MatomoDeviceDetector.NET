@@ -802,6 +802,9 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             {
                 "XV", "Xvast"
             },
+            {
+                "ZV", "Zvu"
+            },
         };
 
         /// <summary>
@@ -809,48 +812,20 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
         /// </summary>
         private static Dictionary<string, string[]> browserFamilies = new Dictionary<string, string[]>
         {
-            {
-                "Android Browser", new[] { "AN", "MU", }
-            },
-            {
-                "BlackBerry Browser", new[] { "BB" }
-            },
-            {
-                "Baidu", new[] { "BD", "BS", }
-            },
-            {
-                "Amiga", new[] { "AV", "AW", }
-            },
-            {
-                "Chrome", new[] { "CH", "BA", "BR", "CC", "CD", "CM", "CI", "CF", "CN", "CR", "CP", "DD", "IR", "RM", "AO", "TS", "VI", "PT", "AS", "TB", "AD", "SB", "WP", "I3", "CV", "WH", "SZ", "QW", "LF", "KW", "2B", "CE", "EC", "MT", "MS", "HA", "OC", "MZ", "BM", "KN", "SW", "M1", "FA", "TA", "AH", "CL", "SU", "EU", "UB", "LO", "VG", "TV", "A0", "1B", "S4", "EE", "AE", "VM", "O0", "TG", "GB", "SY", "HH", "YJ", "LL", "TU", "XV", "C2", }
-            },
-            {
-                "Firefox", new[] { "FF", "FE", "FM", "SX", "FB", "PX", "MB", "EI", "WF", "CU", "TF", "QM", "FR", "I4", "GZ", "MO", "F1", "BI", "MN", "BH", "TO", "OS", "MY", "FY", "AX", "C0", "LH", "S5", }
-            },
-            {
-                "Internet Explorer", new[] { "IE", "IM", "PS" }
-            },
-            {
-                "Konqueror", new[] { "KO" }
-            },
-            {
-                "NetFront", new[] { "NF" }
-            },
-            {
-                "NetSurf", new[] { "NE" }
-            },
-            {
-                "Nokia Browser", new[] { "NB", "NO", "NV", "DO" }
-            },
-            {
-                "Opera", new[] { "OP", "OM", "OI", "ON", "OO", "OG", "OH", "O1", "OX" }
-            },
-            {
-                "Safari", new[] { "SF", "MF", "SO" }
-            },
-            {
-                "Sailfish Browser", new[] { "SA" }
-            },
+            { "Android Browser", new[] { "AN", "MU", } },
+            { "BlackBerry Browser", new[] { "BB" } },
+            { "Baidu", new[] { "BD", "BS", } },
+            { "Amiga", new[] { "AV", "AW", } },
+            { "Chrome", new[] { "CH", "BA", "BR", "CC", "CD", "CM", "CI", "CF", "CN", "CR", "CP", "DD", "IR", "RM", "AO", "TS", "VI", "PT", "AS", "TB", "AD", "SB", "WP", "I3", "CV", "WH", "SZ", "QW", "LF", "KW", "2B", "CE", "EC", "MT", "MS", "HA", "OC", "MZ", "BM", "KN", "SW", "M1", "FA", "TA", "AH", "CL", "SU", "EU", "UB", "LO", "VG", "TV", "A0", "1B", "S4", "EE", "AE", "VM", "O0", "TG", "GB", "SY", "HH", "YJ", "LL", "TU", "XV", "C2", } },
+            { "Firefox", new[] { "FF", "FE", "FM", "SX", "FB", "PX", "MB", "EI", "WF", "CU", "TF", "QM", "FR", "I4", "GZ", "MO", "F1", "BI", "MN", "BH", "TO", "OS", "MY", "FY", "AX", "C0", "LH", "S5", "ZV", } },
+            { "Internet Explorer", new[] { "IE", "IM", "PS" } },
+            { "Konqueror", new[] { "KO" } },
+            { "NetFront", new[] { "NF" } },
+            { "NetSurf", new[] { "NE" } },
+            { "Nokia Browser", new[] { "NB", "NO", "NV", "DO" } },
+            { "Opera", new[] { "OP", "OM", "OI", "ON", "OO", "OG", "OH", "O1", "OX" } },
+            { "Safari", new[] { "SF", "MF", "SO" } },
+            { "Sailfish Browser", new[] { "SA" } },
         };
 
         /// <summary>
