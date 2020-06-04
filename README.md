@@ -59,7 +59,7 @@ var result = botParser.Parse();
 
 The lists below are auto generated.
 
-*Last update: 2020/05/25*
+*Last update: 2020/06/04*
 
 ### List of detected operating systems:
 
