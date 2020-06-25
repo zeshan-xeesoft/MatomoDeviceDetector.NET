@@ -27,7 +27,7 @@ namespace MatomoDeviceDetectorNET
         /// <summary>
         /// Current version number of DeviceDetector.
         /// </summary>
-        public const string VERSION = "3.12.3";
+        public const string VERSION = "3.12.6";
 
         /// <summary>
         /// Operating system families that are known as desktop only.
