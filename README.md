@@ -54,12 +54,11 @@ var result = botParser.Parse();
 
 ```
 
-
 ## What Device Detector is able to detect
 
 The lists below are auto generated.
 
-*Last update: 2020/06/25*
+*Last update: 2020/06/30*
 
 ### List of detected operating systems:
 
