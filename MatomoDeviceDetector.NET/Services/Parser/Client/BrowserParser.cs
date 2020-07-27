@@ -125,6 +125,9 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
                 "BL", "B-Line"
             },
             {
+                "BU", "Blue Browser"
+            },
+            {
                 "BR", "Brave"
             },
             {
@@ -800,6 +803,9 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
                 "YL", "Yandex Browser Lite"
             },
             {
+                "YN", "Yaani Browser"
+            },
+            {
                 "XI", "Xiino"
             },
             {
@@ -819,7 +825,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "BlackBerry Browser", new[] { "BB" } },
             { "Baidu", new[] { "BD", "BS", } },
             { "Amiga", new[] { "AV", "AW", } },
-            { "Chrome", new[] { "CH", "BA", "BR", "CC", "CD", "CM", "CI", "CF", "CN", "CR", "CP", "DD", "IR", "RM", "AO", "TS", "VI", "PT", "AS", "TB", "AD", "SB", "WP", "I3", "CV", "WH", "SZ", "QW", "LF", "KW", "2B", "CE", "EC", "MT", "MS", "HA", "OC", "MZ", "BM", "KN", "SW", "M1", "FA", "TA", "AH", "CL", "SU", "EU", "UB", "LO", "VG", "TV", "A0", "1B", "S4", "EE", "AE", "VM", "O0", "TG", "GB", "SY", "HH", "YJ", "LL", "TU", "XV", "C2", "QU", } },
+            { "Chrome", new[] { "CH", "BA", "BR", "CC", "CD", "CM", "CI", "CF", "CN", "CR", "CP", "DD", "IR", "RM", "AO", "TS", "VI", "PT", "AS", "TB", "AD", "SB", "WP", "I3", "CV", "WH", "SZ", "QW", "LF", "KW", "2B", "CE", "EC", "MT", "MS", "HA", "OC", "MZ", "BM", "KN", "SW", "M1", "FA", "TA", "AH", "CL", "SU", "EU", "UB", "LO", "VG", "TV", "A0", "1B", "S4", "EE", "AE", "VM", "O0", "TG", "GB", "SY", "HH", "YJ", "LL", "TU", "XV", "C2", "QU", "YN", } },
             { "Firefox", new[] { "FF", "FE", "FM", "SX", "FB", "PX", "MB", "EI", "WF", "CU", "TF", "QM", "FR", "I4", "GZ", "MO", "F1", "BI", "MN", "BH", "TO", "OS", "MY", "FY", "AX", "C0", "LH", "S5", "ZV", } },
             { "Internet Explorer", new[] { "IE", "IM", "PS" } },
             { "Konqueror", new[] { "KO" } },
@@ -834,7 +840,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
         /// <summary>
         /// Browsers that are available for mobile devices only.
         /// </summary>
-        private static string[] mobileOnlyBrowsers = { "36", "OC", "PU", "SK", "MF", "OI", "OM", "DD", "DB", "ST", "BL", "IV", "FM", "C1", "AL", "SA", "SB", "FR", "WP", "HA", "NX", "HU", "VV", "RE", "CB", "MZ", "UM", "FK", "FX", "WI", "MN", "M1", "AH", "SU", "EU", "EZ", "UT", "DT", "S0", "QU", };
+        private static string[] mobileOnlyBrowsers = { "36", "OC", "PU", "SK", "MF", "OI", "OM", "DD", "DB", "ST", "BL", "IV", "FM", "C1", "AL", "SA", "SB", "FR", "WP", "HA", "NX", "HU", "VV", "RE", "CB", "MZ", "UM", "FK", "FX", "WI", "MN", "M1", "AH", "SU", "EU", "EZ", "UT", "DT", "S0", "QU", "YN", };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BrowserParser"/> class.

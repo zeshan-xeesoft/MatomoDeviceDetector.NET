@@ -68,6 +68,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Device
         /// </summary>
         public static Dictionary<string, string> DeviceBrands = new Dictionary<string, string>
         {
+            { "36", "360" },
             { "3Q", "3Q" },
             { "4G", "4Good" },
             { "AE", "Ace" },
@@ -479,7 +480,8 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Device
             { "OO", "Opsson" },
             { "OV", "Overmax" },
             { "OY", "Oysters" },
-            { "OW", "�wn" },
+            { "OW", "öwn" },
+            { "O2", "Owwo" },
             { "PN", "Panacom" },
             { "PA", "Panasonic" },
             { "PB", "PCBOX" },
@@ -571,6 +573,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Device
             { "SC", "Smartfren" },
             { "SO", "Sony" },
             { "OI", "Sonim" },
+            { "X2", "Soundmax" },
             { "8S", "Soyes" },
             { "SP", "Spice" },
             { "6S", "Spectrum" },
@@ -607,6 +610,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Device
             { "TB", "Tecno Mobile" },
             { "TP", "TechPad" },
             { "TD", "Tesco" },
+            { "T0", "TD Systems" },
             { "TI", "TIANYU" },
             { "TG", "Telego" },
             { "TL", "Telefunken" },
