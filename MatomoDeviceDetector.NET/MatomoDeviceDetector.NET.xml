@@ -1324,6 +1324,16 @@
             Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Device.MobileParser"/> class.
             </summary>
         </member>
+        <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.NotebookParser">
+            <summary>
+            MobileParser.
+            </summary>
+        </member>
+        <member name="M:MatomoDeviceDetectorNET.Services.Parser.Device.NotebookParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MatomoDeviceDetectorNET.Services.Parser.Device.NotebookParser"/> class.
+            </summary>
+        </member>
         <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.PortableMediaPlayerParser">
             <summary>
             Portable Media Player Parser.

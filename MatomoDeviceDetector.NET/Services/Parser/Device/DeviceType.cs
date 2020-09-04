@@ -75,5 +75,10 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Device
         /// Wearable.
         /// </summary>
         public const int WEARABLE = 12;
+
+        /// <summary>
+        /// Notebook.
+        /// </summary>
+        //// public const int NOTEBOOK = 13;
     }
 }

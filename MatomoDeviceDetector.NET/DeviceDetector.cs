@@ -27,7 +27,7 @@ namespace MatomoDeviceDetectorNET
         /// <summary>
         /// Current version number of DeviceDetector.
         /// </summary>
-        public const string VERSION = "3.12.6";
+        public const string VERSION = "3.13.0";
 
         /// <summary>
         /// Operating system families that are known as desktop only.
@@ -199,6 +199,7 @@ namespace MatomoDeviceDetectorNET
         public void AddStandardDevicesParser()
         {
             this.deviceParsers.Add(new HbbTvParser());
+            this.deviceParsers.Add(new NotebookParser());
             this.deviceParsers.Add(new ConsoleParser());
             this.deviceParsers.Add(new CarBrowserParser());
             this.deviceParsers.Add(new CameraParser());
@@ -314,6 +315,7 @@ namespace MatomoDeviceDetectorNET
         /// <returns>Bool.</returns>
         public bool IsMobile()
         {
+            // Mobile device types
             var mobileDeviceTypes = new List<int>
             {
                 DeviceType.FEATUREPHONE,
@@ -329,6 +331,7 @@ namespace MatomoDeviceDetectorNET
                 return true;
             }
 
+            // non mobile device types
             var nonMobileDeviceTypes = new List<int>
             {
                 DeviceType.TV,
@@ -341,6 +344,7 @@ namespace MatomoDeviceDetectorNET
                 return false;
             }
 
+            // Check for browsers available for mobile devices only
             if (this.UsesMobileBrowser())
             {
                 return true;
@@ -370,6 +374,7 @@ namespace MatomoDeviceDetectorNET
                 return false;
             }
 
+            // Check for browsers available for mobile devices only
             if (this.UsesMobileBrowser())
             {
                 return false;
@@ -507,6 +512,10 @@ namespace MatomoDeviceDetectorNET
             }
 
             this.ParseOs();
+
+            // Parse Clients
+            // Clients might be browsers, Feed Readers, Mobile Apps, Media Players or
+            // any other application accessing with an parseable UA
             this.ParseClient();
             this.ParseDevice();
         }
@@ -639,6 +648,20 @@ namespace MatomoDeviceDetectorNET
                 if (deviceParser.ParserName == "tv")
                 {
                     var parser = (HbbTvParser)deviceParser;
+
+                    var result = parser.Parse();
+                    if (result.Success)
+                    {
+                        this.device = result.Match.Type;
+                        this.model = result.Match.Name;
+                        this.brand = result.Match.Brand;
+                        break;
+                    }
+                }
+
+                if (deviceParser.ParserName == "notebook")
+                {
+                    var parser = (NotebookParser)deviceParser;
 
                     var result = parser.Parse();
                     if (result.Success)
