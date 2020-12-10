@@ -49,6 +49,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             { "COS", "Chrome OS" },
             { "CYN", "CyanogenMod" },
             { "DEB", "Debian" },
+            { "DEE", "Deepin" },
             { "DFB", "DragonFly" },
             { "FED", "Fedora" },
             { "FOS", "Firefox OS" },
@@ -76,6 +77,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             { "MOR", "MorphOS" },
             { "NBS", "NetBSD" },
             { "MTK", "MTK / Nucleus" },
+            { "MRE", "MRE" },
             { "WII", "Nintendo" },
             { "NDS", "Nintendo Mobile" },
             { "OS2", "OS/2" },
@@ -86,6 +88,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             { "PS3", "PlayStation" },
             { "RHT", "Red Hat" },
             { "ROS", "RISC OS" },
+            { "RSO", "Rosa" },
             { "REM", "Remix OS" },
             { "RZD", "RazoDroiD" },
             { "SAB", "Sabayon" },
@@ -172,7 +175,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser
                 "Mobile Gaming Console", new[] { "PSP", "NDS", "XBX" }
             },
             {
-                "Real-time OS", new[] { "MTK", "TDX" }
+                "Real-time OS", new[] { "MTK", "TDX", "MRE" }
             },
             {
                 "Other Mobile", new[] { "WOS", "POS", "SBA", "TIZ", "SMG", "MAE" }

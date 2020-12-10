@@ -1269,6 +1269,11 @@
             Wearable.
             </summary>
         </member>
+        <member name="F:MatomoDeviceDetectorNET.Services.Parser.Device.DeviceType.PERIPHERAL">
+            <summary>
+            PERIPHERAL.
+            </summary>
+        </member>
         <member name="T:MatomoDeviceDetectorNET.Services.Parser.Device.HbbTvParser">
             <summary>
             HbbTvParser.

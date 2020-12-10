@@ -43,7 +43,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client.Browser.Engine
                 return result;
             }
 
-            var matches = this.GetRegexEngine().MatchesUnique(this.UserAgent, this.engine + @"\s*\/?\s*((?(?=\d+\.\d)\d+[.\d]*|\d{1,7}(?=(?:\D|$))))").ToArray();
+            var matches = this.GetRegexEngine().MatchesUnique(this.UserAgent, this.engine + @"\s*\/?\s*((?(?=\d+\.\d)\d+[.\d]*|\d{1,8}(?=(?:\D|$))))").ToArray();
 
             if (matches.Length <= 0)
             {
