@@ -45,6 +45,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             { "BLB", "BlackBerry OS" },
             { "QNX", "BlackBerry Tablet OS" },
             { "BMP", "Brew" },
+            { "CAI", "Caixa Mágica" },
             { "CES", "CentOS" },
             { "COS", "Chrome OS" },
             { "CYN", "CyanogenMod" },
@@ -52,9 +53,12 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             { "DEE", "Deepin" },
             { "DFB", "DragonFly" },
             { "FED", "Fedora" },
+            { "FEN", "Fenix" },
             { "FOS", "Firefox OS" },
             { "FIR", "Fire OS" },
+            { "FRE", "Freebox" },
             { "BSD", "FreeBSD" },
+            { "FYD", "FydeOS" },
             { "GNT", "Gentoo" },
             { "GTV", "Google TV" },
             { "HPX", "HP-UX" },
@@ -69,6 +73,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             { "VLN", "VectorLinux" },
             { "MAC", "Mac" },
             { "MAE", "Maemo" },
+            { "MAG", "Mageia" },
             { "MDR", "Mandriva" },
             { "SMG", "MeeGo" },
             { "MCD", "MocorDroid" },
@@ -84,6 +89,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             { "T64", "OSF1" },
             { "OBS", "OpenBSD" },
             { "ORD", "Ordissimo" },
+            { "PCL", "PCLinuxOS" },
             { "PSP", "PlayStation Portable" },
             { "PS3", "PlayStation" },
             { "RHT", "Red Hat" },
@@ -94,6 +100,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             { "SAB", "Sabayon" },
             { "SSE", "SUSE" },
             { "SAF", "Sailfish OS" },
+            { "SEE", "SeewoOS" },
             { "SLW", "Slackware" },
             { "SOS", "Solaris" },
             { "SYL", "Syllable" },
@@ -106,7 +113,9 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             { "TIZ", "Tizen" },
             { "TOS", "TmaxOS" },
             { "UBT", "Ubuntu" },
+            { "WAS", "watchOS" },
             { "WTV", "WebTV" },
+            { "WHS", "Whale OS" },
             { "WIN", "Windows" },
             { "WCE", "Windows CE" },
             { "WIO", "Windows IoT" },
@@ -145,7 +154,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser
                 "BeOS", new[] { "BEO", "HAI" }
             },
             {
-                "Chrome OS", new[] { "COS" }
+                "Chrome OS", new[] { "COS", "FYD", "SEE", }
             },
             {
                 "Firefox OS", new[] { "FOS", "KOS" }
@@ -160,13 +169,18 @@ namespace MatomoDeviceDetectorNET.Services.Parser
                 "IBM", new[] { "OS2" }
             },
             {
-                "iOS", new[] { "IOS" }
+                "iOS", new[] { "IOS", "WAS", }
             },
             {
                 "RISC OS", new[] { "ROS" }
             },
             {
-                "GNU/Linux", new[] { "LIN", "ARL", "DEB", "KNO", "MIN", "UBT", "KBT", "XBT", "LBT", "FED", "RHT", "VLN", "MDR", "GNT", "SAB", "SLW", "SSE", "CES", "BTR", "SAF", "ORD", "TOS" }
+                "GNU/Linux", new[]
+                {
+                    "LIN", "ARL", "DEB", "KNO", "MIN", "UBT", "KBT", "XBT", "LBT", "FED",
+                    "RHT", "VLN", "MDR", "GNT", "SAB", "SLW", "SSE", "CES", "BTR", "SAF",
+                    "ORD", "TOS", "RSO", "DEE", "FRE", "MAG", "FEN", "CAI", "PCL",
+                }
             },
             {
                 "Mac", new[] { "MAC" }
@@ -194,6 +208,9 @@ namespace MatomoDeviceDetectorNET.Services.Parser
             },
             {
                 "Windows Mobile", new[] { "WPH", "WMO", "WCE", "WRT", "WIO" }
+            },
+            {
+                "Other Smart TV", new[] { "WHS", }
             },
         };
 

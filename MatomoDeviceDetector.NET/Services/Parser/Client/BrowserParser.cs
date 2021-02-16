@@ -48,6 +48,8 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "AT", "Atomic Web Browser" },
             { "AS", "Avast Secure Browser" },
             { "VG", "AVG Secure Browser" },
+            { "AC", "Avira Scout" },
+            { "A1", "AwoX" },
             { "BA", "Beaker Browser" },
             { "BM", "Beamrise" },
             { "BB", "BlackBerry Browser" },
@@ -64,6 +66,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "BK", "BriskBard" },
             { "BX", "BrowseX" },
             { "BZ", "Browzar" },
+            { "BY", "Biyubi" },
             { "CA", "Camino" },
             { "CL", "CCleaner" },
             { "C0", "Centaury" },
@@ -82,6 +85,8 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "CN", "CoolNovo" },
             { "CO", "CometBird" },
             { "CB", "COS Browser" },
+            { "CW", "Cornowser" },
+            { "C3", "Chim Lac" },
             { "CP", "ChromePlus" },
             { "CR", "Chromium" },
             { "CY", "Cyberfox" },
@@ -118,12 +123,15 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "FY", "Firefox Reality" },
             { "FR", "Firefox Rocket" },
             { "FL", "Flock" },
+            { "FO", "Flow" },
             { "FM", "Firefox Mobile" },
             { "FW", "Fireweb" },
             { "FN", "Fireweb Navigator" },
+            { "FS", "Flast" },
             { "FU", "FreeU" },
             { "GA", "Galeon" },
             { "GH", "Ghostery Privacy Browser" },
+            { "GI", "GinxDroid Browser" },
             { "GB", "Glass Browser" },
             { "GE", "Google Earth" },
             { "GO", "GOG Galaxy" },
@@ -163,6 +171,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "LG", "LG Browser" },
             { "LH", "Light" },
             { "LI", "Links" },
+            { "IF", "Lolifox" },
             { "LO", "Lovense Browser" },
             { "LU", "LuaKit" },
             { "LL", "Lulumi" },
@@ -186,6 +195,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "MY", "Mypal" },
             { "MR", "Monument Browser" },
             { "MW", "MAUI WAP Browser" },
+            { "NW", "Navigateur Web" },
             { "NR", "NFS Browser" },
             { "NB", "Nokia Browser" },
             { "NO", "Nokia OSS Browser" },
@@ -200,6 +210,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "OC", "Oculus Browser" },
             { "O1", "Opera Mini iOS" },
             { "OB", "Obigo" },
+            { "O2", "Odin" },
             { "OD", "Odyssey Web Browser" },
             { "OF", "Off By One" },
             { "HH", "OhHai Browser" },
@@ -212,6 +223,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "OP", "Opera" },
             { "ON", "Opera Next" },
             { "OO", "Opera Touch" },
+            { "OA", "Orca" },
             { "OS", "Ordissimo" },
             { "OR", "Oregano" },
             { "O0", "Origin In-Game Overlay" },
@@ -227,12 +239,17 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "PU", "Puffin" },
             { "PW", "Palm WebPro" },
             { "PA", "Palmscape" },
+            { "PE", "Perfect Browser" },
+            { "PH", "Phantom Browser" },
             { "PX", "Phoenix" },
             { "PB", "Phoenix Browser" },
+            { "PF", "PlayFree Browser" },
             { "PO", "Polaris" },
             { "PT", "Polarity" },
+            { "LY", "PolyBrowser" },
             { "PI", "PrivacyWall" },
             { "PS", "Microsoft Edge" },
+            { "Q2", "QQ Browser Lite" },
             { "Q1", "QQ Browser Mini" },
             { "QQ", "QQ Browser" },
             { "QT", "Qutebrowser" },
@@ -251,6 +268,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "SF", "Safari" },
             { "S5", "Safe Exam Browser" },
             { "SW", "SalamWeb" },
+            { "SV", "SFive" },
             { "SH", "Shiira" },
             { "S1", "SimpleBrowser" },
             { "SY", "Sizzy" },
@@ -258,8 +276,10 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "SS", "Seraphic Sraf" },
             { "SL", "Sleipnir" },
             { "S6", "Slimjet" },
+            { "S7", "SP Browser" },
             { "7S", "7Star" },
             { "LE", "Smart Lenovo Browser" },
+            { "OZ", "Smooz" },
             { "SN", "Snowshoe" },
             { "SO", "Sogou Mobile Browser" },
             { "S2", "Splash" },
@@ -274,6 +294,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "ST", "Streamy" },
             { "SX", "Swiftfox" },
             { "SZ", "Seznam Browser" },
+            { "TR", "T-Browser" },
             { "TO", "t-online.de Browser" },
             { "TA", "Tao Browser" },
             { "TF", "TenFourFox" },
@@ -285,10 +306,12 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "TV", "TV Bro" },
             { "UB", "UBrowser" },
             { "UC", "UC Browser" },
+            { "UH", "UC Browser HD" },
             { "UM", "UC Browser Mini" },
             { "UT", "UC Browser Turbo" },
             { "UR", "UR Browser" },
             { "UZ", "Uzbl" },
+            { "VE", "Venus Browser" },
             { "VI", "Vivaldi" },
             { "VV", "vivo Browser" },
             { "VB", "Vision Mobile Browser" },
@@ -305,8 +328,10 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             { "YL", "Yandex Browser Lite" },
             { "YN", "Yaani Browser" },
             { "YB", "Yolo Browser" },
+            { "XS", "xStand" },
             { "XI", "Xiino" },
             { "XV", "Xvast" },
+            { "ZE", "Zetakey" },
             { "ZV", "Zvu" },
         };
 
@@ -350,7 +375,8 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
                     "CL", "SU", "EU", "UB", "LO", "VG", "TV", "A0", "1B",
                     "S4", "EE", "AE", "VM", "O0", "TG", "GB", "SY", "HH",
                     "YJ", "LL", "TU", "XV", "C2", "QU", "YN", "JB", "MR",
-                    "S6", "7S", "NM", "PB", "UR", "NR", "SG", "S8",
+                    "S6", "7S", "NM", "PB", "UR", "NR", "SG", "S8", "C3",
+                    "SS", "O2", "SV", "TR", "CW", "GI", "VE", "AC", "FS",
                 }
             },
             {
@@ -359,7 +385,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
                     "FF", "FE", "FM", "SX", "FB", "PX", "MB", "EI", "WF",
                     "CU", "TF", "QM", "FR", "I4", "GZ", "MO", "F1", "BI",
                     "MN", "BH", "TO", "OS", "MY", "FY", "AX", "C0", "LH",
-                    "S5", "ZV", "IW", "PI", "BN",
+                    "S5", "ZV", "IW", "PI", "BN", "OA", "LY", "IF",
                 }
             },
             {
@@ -375,7 +401,6 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
                 }
             },
             {
-
                 "NetFront", new[]
                 {
                     "NF",
@@ -402,7 +427,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
             {
                 "Safari", new[]
                 {
-                    "SF", "MF", "SO",
+                    "SF", "MF", "SO", "S7",
                 }
             },
             {
@@ -418,12 +443,12 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client
         /// </summary>
         private static string[] mobileOnlyBrowsers =
         {
-            "36", "OC", "PU", "SK", "MF", "OI", "OM", "DD", "DB",
-            "ST", "BL", "IV", "FM", "C1", "AL", "SA", "SB", "FR",
-            "WP", "HA", "NX", "HU", "VV", "RE", "CB", "MZ", "UM",
-            "FK", "FX", "WI", "MN", "M1", "AH", "SU", "EU", "EZ",
-            "UT", "DT", "S0", "QU", "YN", "JB", "GH", "PI", "SG",
-            "KD",
+           "36", "OC", "PU", "SK", "MF", "OI", "OM", "DD", "DB",
+           "ST", "BL", "IV", "FM", "C1", "AL", "SA", "SB", "FR",
+           "WP", "HA", "NX", "HU", "VV", "RE", "CB", "MZ", "UM",
+           "FK", "FX", "WI", "MN", "M1", "AH", "SU", "EU", "EZ",
+           "UT", "DT", "S0", "QU", "YN", "JB", "GH", "PI", "SG",
+           "KD", "PE", "UH", "S7", "CW", "OZ", "GI", "VE",
         };
 
         /// <summary>

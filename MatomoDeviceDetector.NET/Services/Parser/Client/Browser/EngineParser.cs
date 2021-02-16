@@ -37,6 +37,7 @@ namespace MatomoDeviceDetectorNET.Services.Parser.Client.Browser
             "NetSurf",
             "Servo",
             "Goanna",
+            "EkiohFlow",
         };
 
         /// <summary>
