@@ -259,7 +259,8 @@ namespace MatomoDeviceDetectorNET.Services.Parser
         /// <returns>Fixed.</returns>
         private string FixUserAgentRegEx(string regex)
         {
-            return @"(?:^|[^A-Z0-9\-_]|[^A-Z0-9\-]_|sprd-)(?:" + regex.Replace("/", @"\/").Replace("++", "+").Replace(@"\_", "_") + ")";
+            // return @"(?:^|[^A-Z0-9\-_]|[^A-Z0-9\-]_|sprd-)(?:" + regex.Replace("/", @"\/").Replace("++", "+").Replace(@"\_", "_") + ")";
+            return @"(?:^|[^A-Z0-9\-_]|[^A-Z0-9\-]_|sprd-)(?:" + regex.Replace("/", @"\/").Replace("++", "+").Replace(@"\_", "_").Replace(@"\_", "_") + ")"; // Updated by Zeshan
         }
 
         /// <summary>
